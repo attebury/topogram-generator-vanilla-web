@@ -1,0 +1,28 @@
+{
+  "name": "@attebury/topogram-generator-vanilla-web",
+  "version": "0.1.0",
+  "description": "Package-backed Topogram generator for vanilla HTML, CSS, and JavaScript web apps.",
+  "license": "Apache-2.0",
+  "private": false,
+  "main": "index.cjs",
+  "exports": {
+    ".": "./index.cjs",
+    "./topogram-generator.json": "./topogram-generator.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.cjs",
+    "topogram-generator.json",
+    "README.md"
+  ],
+  "scripts": {
+    "check": "node ./scripts/verify.mjs",
+    "pack:check": "node ./scripts/verify.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "devDependencies": {
+    "@attebury/topogram": "file:../topogram/engine"
+  }
+}

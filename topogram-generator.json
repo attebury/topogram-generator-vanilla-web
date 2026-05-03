@@ -1,0 +1,27 @@
+{
+  "id": "@attebury/topogram-generator-vanilla-web",
+  "version": "1",
+  "surface": "web",
+  "targetKind": "web",
+  "projectionPlatforms": [
+    "ui_web"
+  ],
+  "inputs": [
+    "ui-web-contract"
+  ],
+  "outputs": [
+    "web-app"
+  ],
+  "stack": {
+    "runtime": "browser",
+    "framework": "vanilla",
+    "language": "javascript"
+  },
+  "capabilities": {
+    "routes": true,
+    "components": false,
+    "coverage": false
+  },
+  "source": "package",
+  "package": "@attebury/topogram-generator-vanilla-web"
+}
