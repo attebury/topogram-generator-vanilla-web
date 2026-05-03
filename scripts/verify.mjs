@@ -10,6 +10,7 @@ const workRoot = path.join(root, ".tmp", "verify");
 const packRoot = path.join(workRoot, "pack");
 const npmCache = path.join(workRoot, "npm-cache");
 const cliPackageSpec = process.env.TOPOGRAM_CLI_PACKAGE_SPEC || `file:${path.resolve(root, "../topogram/engine")}`;
+const cliDependencySpec = dependencySpecFor("@attebury/topogram", cliPackageSpec);
 
 fs.rmSync(workRoot, { recursive: true, force: true });
 fs.mkdirSync(packRoot, { recursive: true });
@@ -31,7 +32,7 @@ writeJson(path.join(projectRoot, "package.json"), {
   private: true,
   type: "module",
   devDependencies: {
-    "@attebury/topogram": cliPackageSpec,
+    "@attebury/topogram": cliDependencySpec,
     "@attebury/topogram-generator-vanilla-web": `file:${generatorTarball}`
   }
 });
@@ -86,4 +87,12 @@ function run(command, args, options = {}) {
 
 function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function dependencySpecFor(packageName, packageSpec) {
+  const prefix = `${packageName}@`;
+  if (packageSpec.startsWith(prefix)) {
+    return packageSpec.slice(prefix.length);
+  }
+  return packageSpec;
 }
