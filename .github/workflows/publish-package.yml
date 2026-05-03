@@ -28,7 +28,13 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: "@attebury"
       - name: Set package version
-        run: npm version "${{ inputs.version }}" --no-git-tag-version
+        run: |
+          CURRENT="$(node -p "require('./package.json').version")"
+          if [[ "$CURRENT" != "${{ inputs.version }}" ]]; then
+            npm version "${{ inputs.version }}" --no-git-tag-version
+          else
+            echo "Package version already set to $CURRENT"
+          fi
       - name: Verify
         run: npm run check
         env:
