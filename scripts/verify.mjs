@@ -36,6 +36,7 @@ writeJson(path.join(projectRoot, "package.json"), {
     "@attebury/topogram-generator-vanilla-web": `file:${generatorTarball}`
   }
 });
+writeNpmrc(projectRoot);
 
 console.log("Installing consumer dependencies...");
 run("npm", ["install"], { cwd: projectRoot, quiet: true });
@@ -87,6 +88,17 @@ function run(command, args, options = {}) {
 
 function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function writeNpmrc(projectRoot) {
+  const lines = [
+    "@attebury:registry=https://npm.pkg.github.com"
+  ];
+  if (process.env.NODE_AUTH_TOKEN) {
+    lines.push(`//npm.pkg.github.com/:_authToken=${process.env.NODE_AUTH_TOKEN}`);
+  }
+  lines.push("");
+  fs.writeFileSync(path.join(projectRoot, ".npmrc"), lines.join("\n"), "utf8");
 }
 
 function dependencySpecFor(packageName, packageSpec) {

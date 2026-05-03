@@ -22,10 +22,6 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/checkout@v6
-        with:
-          repository: attebury/topogram
-          path: topogram-source
       - uses: actions/setup-node@v6
         with:
           node-version: 24
@@ -37,7 +33,7 @@ jobs:
         run: npm run check
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TOPOGRAM_CLI_PACKAGE_SPEC: "file:${{ github.workspace }}/topogram-source/engine"
+          TOPOGRAM_CLI_PACKAGE_SPEC: "@attebury/topogram@0.3.14"
       - name: Publish
         run: npm publish --tag "${{ inputs.dist_tag }}"
         env:
