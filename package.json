@@ -16,13 +16,10 @@
     "README.md"
   ],
   "scripts": {
-    "check": "node ./scripts/verify.mjs",
-    "pack:check": "node ./scripts/verify.mjs"
+    "check": "node ./scripts/check-generator.mjs && node ./scripts/verify.mjs",
+    "pack:check": "npm run check"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
-  },
-  "devDependencies": {
-    "@attebury/topogram": "file:../topogram/engine"
   }
 }

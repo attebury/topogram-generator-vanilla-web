@@ -47,5 +47,5 @@ and verifies the generated two-page vanilla web app.
 Use a different Topogram CLI package with:
 
 ```bash
-TOPOGRAM_CLI_PACKAGE_SPEC=@attebury/topogram@0.3.13 npm run check
+TOPOGRAM_CLI_PACKAGE_SPEC=@attebury/topogram@0.3.20 npm run check
 ```
