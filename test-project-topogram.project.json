@@ -13,9 +13,9 @@
         "type": "web",
         "projection": "proj_ui_web",
         "generator": {
-          "id": "@attebury/topogram-generator-vanilla-web",
+          "id": "@topogram/generator-vanilla-web",
           "version": "1",
-          "package": "@attebury/topogram-generator-vanilla-web"
+          "package": "@topogram/generator-vanilla-web"
         },
         "port": 5173
       }

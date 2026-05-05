@@ -1,6 +1,6 @@
 {
-  "name": "@attebury/topogram-generator-vanilla-web",
-  "version": "0.1.1",
+  "name": "@topogram/generator-vanilla-web",
+  "version": "0.1.2",
   "description": "Package-backed Topogram generator for vanilla HTML, CSS, and JavaScript web apps.",
   "license": "Apache-2.0",
   "private": false,
@@ -20,6 +20,7 @@
     "pack:check": "npm run check"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   }
 }

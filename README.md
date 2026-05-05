@@ -9,7 +9,7 @@ that contract into framework-specific files.
 
 ## Manifest
 
-- Generator id: `@attebury/topogram-generator-vanilla-web`
+- Generator id: `@topogram/generator-vanilla-web`
 - Surface: `web`
 - Projection platform: `ui_web`
 - Stack: vanilla HTML/CSS/JS
@@ -24,9 +24,9 @@ Topology binding:
   "type": "web",
   "projection": "proj_ui_web",
   "generator": {
-    "id": "@attebury/topogram-generator-vanilla-web",
+    "id": "@topogram/generator-vanilla-web",
     "version": "1",
-    "package": "@attebury/topogram-generator-vanilla-web"
+    "package": "@topogram/generator-vanilla-web"
   },
   "port": 5173
 }
@@ -43,7 +43,7 @@ npm run check
 See [`CONSUMER_PROOF.md`](./CONSUMER_PROOF.md) for the verification standard
 this repo must keep before publishing.
 
-The smoke test packs this generator, installs it beside `@attebury/topogram` in
+The smoke test packs this generator, installs it beside `@topogram/cli` in
 a temporary consumer project, runs `topogram check`, runs `topogram generate`,
 compiles the generated app bundle, and verifies the generated two-page vanilla
 web app.
@@ -51,5 +51,5 @@ web app.
 Use a different Topogram CLI package with:
 
 ```bash
-TOPOGRAM_CLI_PACKAGE_SPEC=@attebury/topogram@latest npm run check
+TOPOGRAM_CLI_PACKAGE_SPEC=@topogram/cli@latest npm run check
 ```

@@ -1,5 +1,5 @@
 {
-  "id": "@attebury/topogram-generator-vanilla-web",
+  "id": "@topogram/generator-vanilla-web",
   "version": "1",
   "surface": "web",
   "targetKind": "web",
@@ -23,7 +23,7 @@
     "coverage": false
   },
   "source": "package",
-  "package": "@attebury/topogram-generator-vanilla-web",
+  "package": "@topogram/generator-vanilla-web",
   "componentSupport": {
     "patterns": [],
     "behaviors": [],
