@@ -10,7 +10,8 @@
     "ui-web-contract"
   ],
   "outputs": [
-    "web-app"
+    "web-app",
+    "generation-coverage"
   ],
   "stack": {
     "runtime": "browser",
@@ -20,7 +21,7 @@
   "capabilities": {
     "routes": true,
     "components": false,
-    "coverage": false
+    "coverage": true
   },
   "source": "package",
   "package": "@topogram/generator-vanilla-web",

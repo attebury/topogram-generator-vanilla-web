@@ -56,6 +56,15 @@ assert.equal(fs.existsSync(path.join(projectRoot, "app", ".topogram-generated.js
 assert.match(fs.readFileSync(path.join(webRoot, "index.html"), "utf8"), /Hello Web/);
 assert.match(fs.readFileSync(path.join(webRoot, "workflow.html"), "utf8"), /Hello Workflow/);
 assert.match(fs.readFileSync(path.join(webRoot, "scripts", "dev.mjs"), "utf8"), /5173/);
+const styles = fs.readFileSync(path.join(webRoot, "styles.css"), "utf8");
+assert.match(styles, /--topogram-design-density: comfortable;/);
+assert.match(styles, /--topogram-design-tone: editorial;/);
+const coverage = JSON.parse(fs.readFileSync(path.join(webRoot, "topogram", "generation-coverage.json"), "utf8"));
+assert.equal(coverage.type, "generation_coverage");
+assert.equal(coverage.generator, "@topogram/generator-vanilla-web");
+assert.equal(coverage.design_intent.status, "mapped");
+assert.equal(coverage.design_intent.tokens.tone, "editorial");
+assert.deepEqual(coverage.diagnostics, []);
 
 console.log("Checking generated web app...");
 run("npm", ["--prefix", webRoot, "run", "check"], { cwd: projectRoot });
