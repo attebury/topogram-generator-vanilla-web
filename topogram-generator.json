@@ -2,12 +2,8 @@
   "id": "@topogram/generator-vanilla-web",
   "version": "1",
   "surface": "web",
-  "targetKind": "web",
-  "projectionPlatforms": [
-    "ui_web"
-  ],
   "inputs": [
-    "ui-web-contract"
+    "ui-surface-contract"
   ],
   "outputs": [
     "web-app",
@@ -20,12 +16,18 @@
   },
   "capabilities": {
     "routes": true,
-    "components": false,
-    "coverage": true
+    "coverage": true,
+    "widgets": false
   },
   "source": "package",
   "package": "@topogram/generator-vanilla-web",
-  "componentSupport": {
+  "runtimeKinds": [
+    "web_surface"
+  ],
+  "projectionTypes": [
+    "web_surface"
+  ],
+  "widgetSupport": {
     "patterns": [],
     "behaviors": [],
     "unsupported": "contract-only"

@@ -92,7 +92,7 @@ function requiredDesignMarkers(design) {
   ];
 }
 function buildDesignIntentCoverage(contract, files, cssPath) {
-  const design = normalizeDesignIntent(contract?.design);
+  const design = normalizeDesignIntent(contract?.designTokens);
   const css = files[cssPath] || "";
   const markers = requiredDesignMarkers(design);
   const mapped = markers.filter((item) => css.includes(item.marker));
@@ -267,13 +267,13 @@ console.log(\`Checked \${htmlFiles.length} vanilla page(s).\`);
 `;
 }
 
-function renderDevScript(component) {
+function renderDevScript(widget) {
   return `import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(new URL("..", import.meta.url).pathname);
-const port = Number(process.env.PORT || process.env.WEB_PORT || ${component.port || 5173});
+const port = Number(process.env.PORT || process.env.WEB_PORT || ${widget.port || 5173});
 const types = new Map([
   [".html", "text/html; charset=utf-8"],
   [".css", "text/css; charset=utf-8"],
@@ -345,7 +345,7 @@ function renderCoverage(contract, files, routes) {
       page: route.file,
       rendered,
       renderer: rendered ? "generator" : "missing",
-      component_usages: []
+      widget_usages: []
     };
   });
   return {
@@ -355,15 +355,15 @@ function renderCoverage(contract, files, routes) {
     projection: {
       id: contract.projection?.id,
       name: contract.projection?.name,
-      platform: contract.projection?.platform
+      type: contract.projection?.type
     },
     summary: {
       routed_screens: screens.length,
       rendered_screens: screens.filter((screen) => screen.rendered).length,
       implementation_screens: 0,
       generator_screens: screens.filter((screen) => screen.renderer === "generator").length,
-      component_usages: 0,
-      rendered_component_usages: 0,
+      widget_usages: 0,
+      rendered_widget_usages: 0,
       diagnostics: diagnostics.length,
       errors: diagnostics.filter((diagnostic) => diagnostic.severity === "error").length,
       warnings: diagnostics.filter((diagnostic) => diagnostic.severity === "warning").length
@@ -381,13 +381,13 @@ function assertGenerationCoverage(coverage) {
 }
 
 function generate(context) {
-  const contract = context.contracts?.uiWeb;
+  const contract = context.contracts?.uiSurface;
   if (!contract) {
-    throw new Error("Vanilla web generator requires contracts.uiWeb.");
+    throw new Error("Vanilla web generator requires contracts.uiSurface.");
   }
   const routes = routesFromContract(contract);
   const nav = routes.map(({ title, file }) => ({ title, file }));
-  const projectionId = contract.projection?.id || context.projection?.id || "proj_ui_web";
+  const projectionId = contract.projection?.id || context.projection?.id || "proj_web_surface";
   const brand = contract.appShell?.brand || "Topogram Hello";
   const files = {
     "package.json": `${JSON.stringify({
@@ -401,11 +401,11 @@ function generate(context) {
         check: "node ./scripts/check.mjs"
       }
     }, null, 2)}\n`,
-    "styles.css": renderStyles(contract.design),
+    "styles.css": renderStyles(contract.designTokens),
     "app.js": renderBrowserScript(),
     "scripts/build.mjs": renderBuildScript(),
     "scripts/check.mjs": renderCheckScript(),
-    "scripts/dev.mjs": renderDevScript(context.component || {})
+    "scripts/dev.mjs": renderDevScript((context.runtime || context.component || {}))
   };
 
   routes.forEach((route, index) => {
@@ -425,7 +425,7 @@ function generate(context) {
   const coverage = renderCoverage(contract, files, routes);
   assertGenerationCoverage(coverage);
   files["topogram/generation-coverage.json"] = `${JSON.stringify(coverage, null, 2)}\n`;
-  files["topogram/ui-web-contract.json"] = `${JSON.stringify(contract, null, 2)}\n`;
+  files["topogram/ui-surface-contract.json"] = `${JSON.stringify(contract, null, 2)}\n`;
 
   return {
     files,

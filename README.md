@@ -4,14 +4,14 @@ Package-backed Topogram generator for vanilla HTML, CSS, and JavaScript web
 apps.
 
 This package is the first extraction proof for the generator-pack boundary:
-Topogram core builds the normalized `ui-web-contract`, then this package turns
+Topogram core builds the normalized `ui-surface-contract`, then this package turns
 that contract into framework-specific files.
 
 ## Manifest
 
 - Generator id: `@topogram/generator-vanilla-web`
 - Surface: `web`
-- Projection platform: `ui_web`
+- Projection type: `web_surface`
 - Stack: vanilla HTML/CSS/JS
 - Package manifest: `topogram-generator.json`
 - Adapter export: `index.cjs`
@@ -22,7 +22,7 @@ Topology binding:
 {
   "id": "app_web",
   "type": "web",
-  "projection": "proj_ui_web",
+  "projection": "proj_web_surface",
   "generator": {
     "id": "@topogram/generator-vanilla-web",
     "version": "1",
