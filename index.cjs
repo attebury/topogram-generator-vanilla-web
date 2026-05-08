@@ -385,6 +385,7 @@ function generate(context) {
   if (!contract) {
     throw new Error("Vanilla web generator requires contracts.uiSurface.");
   }
+  const runtime = context.runtime || {};
   const routes = routesFromContract(contract);
   const nav = routes.map(({ title, file }) => ({ title, file }));
   const projectionId = contract.projection?.id || context.projection?.id || "proj_web_surface";
@@ -405,7 +406,7 @@ function generate(context) {
     "app.js": renderBrowserScript(),
     "scripts/build.mjs": renderBuildScript(),
     "scripts/check.mjs": renderCheckScript(),
-    "scripts/dev.mjs": renderDevScript((context.runtime || context.component || {}))
+    "scripts/dev.mjs": renderDevScript(runtime)
   };
 
   routes.forEach((route, index) => {
