@@ -22,10 +22,10 @@
   "source": "package",
   "package": "@topogram/generator-vanilla-web",
   "runtimeKinds": [
-    "web_surface"
+    "web"
   ],
   "projectionTypes": [
-    "web_surface"
+    "web"
   ],
   "widgetSupport": {
     "patterns": [],

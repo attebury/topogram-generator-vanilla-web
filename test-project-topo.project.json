@@ -11,14 +11,14 @@
     "runtimes": [
       {
         "id": "app_web",
-        "projection": "proj_web_surface",
+        "surface": "proj_web_surface",
         "generator": {
           "id": "@topogram/generator-vanilla-web",
           "version": "1",
           "package": "@topogram/generator-vanilla-web"
         },
         "port": 5173,
-        "kind": "web_surface"
+        "kind": "web"
       }
     ]
   }

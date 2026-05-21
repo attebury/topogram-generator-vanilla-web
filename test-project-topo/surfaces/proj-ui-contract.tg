@@ -1,10 +1,10 @@
-projection proj_ui_contract {
+surface proj_ui_contract {
   name "Hello Shared UI"
   description "Platform-neutral UI semantics for the hello web starter"
-  type ui_contract
+  type semantic_ui
 
   realizes [cap_view_hello]
-  outputs [ui_contract]
+  outputs [semantic_ui]
 
   app_shell {
     brand "Topogram Hello"

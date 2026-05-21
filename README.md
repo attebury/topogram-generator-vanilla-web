@@ -17,7 +17,7 @@ that contract into framework-specific files.
 
 - Generator id: `@topogram/generator-vanilla-web`
 - Surface: `web`
-- Projection type: `web_surface`
+- Surface type: `web`
 - Stack: vanilla HTML/CSS/JS
 - Package manifest: `topogram-generator.json`
 - Adapter export: `index.cjs`

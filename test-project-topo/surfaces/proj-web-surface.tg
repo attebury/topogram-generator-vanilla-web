@@ -1,10 +1,10 @@
-projection proj_web_surface {
+surface proj_web_surface {
   name "Hello Vanilla Web"
   description "Vanilla HTML/CSS/JS realization for the hello web starter"
-  type web_surface
+  type web
 
   realizes [proj_ui_contract, cap_view_hello]
-  outputs [ui_contract, web_app]
+  outputs [semantic_ui, web_app]
 
   screen_routes {
     screen hello_home path /
